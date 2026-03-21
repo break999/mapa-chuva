@@ -1,6 +1,6 @@
 {
-  "name": "Mapa do Tempo",
-  "short_name": "Clima",
+  "name": "Olha a Chuva",
+  "short_name": "Olha a Chuva",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#000000",
