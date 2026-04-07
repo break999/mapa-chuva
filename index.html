@@ -2,21 +2,113 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mapa do Tempo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Monitoramento do Tempo</title>
   <link rel="manifest" href="manifest.json">
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
+
+    function switchMap(mapId) {
+      // Esconde todos os containers de mapa
+      document.querySelectorAll('.map-container').forEach(el => el.style.display = 'none');
+      // Remove classe ativa dos botões
+      document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+      
+      // Mostra o mapa selecionado
+      document.getElementById(mapId).style.display = 'block';
+      // Ativa o botão correspondente
+      event.currentTarget.classList.add('active');
+    }
   </script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { overflow: hidden; }
+    
+    body, html { 
+      height: 100%; 
+      font-family: sans-serif;
+      background-color: #000;
+      overflow: hidden;
+    }
+
+    /* Container dos mapas */
+    .map-container {
+      width: 100%;
+      height: calc(100vh - 60px); /* Desconta a altura da barra de navegação */
+      display: none;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Barra de Navegação */
+    nav {
+      height: 60px;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 1px solid #333;
+    }
+
+    .tab-button {
+      flex: 1;
+      height: 100%;
+      border: none;
+      background: none;
+      color: #888;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tab-button.active {
+      color: #00aaff;
+      border-top: 3px solid #00aaff;
+      background: #252525;
+    }
+
+    /* Créditos meteoblue fixo sobre o mapa */
+    .credits {
+      position: absolute;
+      bottom: 65px;
+      right: 10px;
+      background: rgba(255,255,255,0.7);
+      padding: 2px 5px;
+      font-size: 10px;
+      border-radius: 3px;
+      text-decoration: none;
+      color: #000;
+    }
   </style>
 </head>
 <body>
-  <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/?windAnimation=0&gust=0&satellite=0&cloudsAndPrecipitation=1&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=detect&tempunit=C&lengthunit=metric&windunit=bft&zoom=6&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=f8b96d8d51947f3d&sig=8b9098048acd8f51fd0fb03ec7430d4008ce0555ccd923a801f32c5594262e91" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 100%;height: 100vh;border: 0;overflow: hidden;display: block;"></iframe>
-  <div><!-- DO NOT REMOVE THIS LINK --><a href="https://www.meteoblue.com/pt/tempo/semana/index" target="_blank" rel="noopener">meteoblue</a></div>
+
+  <!-- MAPA 1: METEOBLUE -->
+  <div id="map-meteoblue" class="map-container" style="display: block;">
+    <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/?windAnimation=0&gust=0&satellite=0&cloudsAndPrecipitation=1&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=detect&tempunit=C&lengthunit=metric&windunit=bft&zoom=6&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=f8b96d8d51947f3d&sig=8b9098048acd8f51fd0fb03ec7430d4008ce0555ccd923a801f32c5594262e91" scrolling="NO"></iframe>
+    <a href="https://www.meteoblue.com/pt/tempo/semana/index" target="_blank" class="credits">meteoblue</a>
+  </div>
+
+  <!-- MAPA 2: CPTEC (DSAT) -->
+  <div id="map-cptec" class="map-container">
+    <!-- Link atualizado para carregar sempre o mais recente (removi a data fixa) -->
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=airmass&product_opacity=1&zoom=7&x=3900.2500&y=4123.0000&overlay=glm_density_group_pixel&overlay_opacity=1&options=false"></iframe>
+  </div>
+
+  <!-- NAVEGAÇÃO -->
+  <nav>
+    <button class="tab-button active" onclick="switchMap('map-meteoblue')">
+      ☁️<br>Previsão
+    </button>
+    <button class="tab-button" onclick="switchMap('map-cptec')">
+      🛰️<br>Satélite (INPE)
+    </button>
+  </nav>
+
 </body>
 </html>
