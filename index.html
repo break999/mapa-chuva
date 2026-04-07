@@ -3,49 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Monitoramento do Tempo</title>
+  <title>Olha a Chuva</title>
   <link rel="manifest" href="manifest.json">
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
-
     function switchMap(mapId) {
-      // Esconde todos os containers de mapa
       document.querySelectorAll('.map-container').forEach(el => el.style.display = 'none');
-      // Remove classe ativa dos botões
       document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
-      
-      // Mostra o mapa selecionado
       document.getElementById(mapId).style.display = 'block';
-      // Ativa o botão correspondente
       event.currentTarget.classList.add('active');
     }
   </script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    
     body, html { 
       height: 100%; 
       font-family: sans-serif;
       background-color: #000;
       overflow: hidden;
     }
-
-    /* Container dos mapas */
     .map-container {
       width: 100%;
-      height: calc(100vh - 60px); /* Desconta a altura da barra de navegação */
+      height: calc(100vh - 60px);
       display: none;
     }
-
     iframe {
       width: 100%;
       height: 100%;
       border: none;
     }
-
-    /* Barra de Navegação */
     nav {
       height: 60px;
       background: #1a1a1a;
@@ -54,7 +42,6 @@
       align-items: center;
       border-top: 1px solid #333;
     }
-
     .tab-button {
       flex: 1;
       height: 100%;
@@ -65,14 +52,11 @@
       cursor: pointer;
       transition: 0.3s;
     }
-
     .tab-button.active {
       color: #00aaff;
       border-top: 3px solid #00aaff;
       background: #252525;
     }
-
-    /* Créditos meteoblue fixo sobre o mapa */
     .credits {
       position: absolute;
       bottom: 65px;
@@ -87,28 +71,20 @@
   </style>
 </head>
 <body>
-
-  <!-- MAPA 1: METEOBLUE -->
-  <div id="map-meteoblue" class="map-container" style="display: block;">
+  <div id="map-cptec" class="map-container" style="display: block;">
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=airmass&product_opacity=1&zoom=6&x=3900.2500&y=4123.0000&overlay=glm_density_group_pixel&overlay_opacity=1&options=false"></iframe>
+  </div>
+  <div id="map-meteoblue" class="map-container">
     <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/?windAnimation=0&gust=0&satellite=0&cloudsAndPrecipitation=1&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=detect&tempunit=C&lengthunit=metric&windunit=bft&zoom=6&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=f8b96d8d51947f3d&sig=8b9098048acd8f51fd0fb03ec7430d4008ce0555ccd923a801f32c5594262e91" scrolling="NO"></iframe>
     <a href="https://www.meteoblue.com/pt/tempo/semana/index" target="_blank" class="credits">meteoblue</a>
   </div>
-
-  <!-- MAPA 2: CPTEC (DSAT) -->
-  <div id="map-cptec" class="map-container">
-    <!-- Link atualizado para carregar sempre o mais recente (removi a data fixa) -->
-    <iframe src="https://www.cptec.inpe.br/dsat/?product=airmass&product_opacity=1&zoom=6&x=3900.2500&y=4123.0000&overlay=glm_density_group_pixel&overlay_opacity=1&options=false"></iframe>
-  </div>
-
-  <!-- NAVEGAÇÃO -->
   <nav>
-    <button class="tab-button active" onclick="switchMap('map-meteoblue')">
+    <button class="tab-button active" onclick="switchMap('map-cptec')">
+      🛰️<br>Satélite
+    </button>
+    <button class="tab-button" onclick="switchMap('map-meteoblue')">
       ☁️<br>Previsão
     </button>
-    <button class="tab-button" onclick="switchMap('map-cptec')">
-      🛰️<br>Satélite (INPE)
-    </button>
   </nav>
-
 </body>
 </html>
