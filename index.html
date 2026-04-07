@@ -14,6 +14,11 @@
       document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
       document.getElementById(mapId).style.display = 'block';
       event.currentTarget.classList.add('active');
+      const iframe = document.querySelector('#' + mapId + ' iframe[data-src]');
+      if (iframe) {
+        iframe.src = iframe.getAttribute('data-src');
+        iframe.removeAttribute('data-src');
+      }
     }
   </script>
   <style>
@@ -79,7 +84,7 @@
     <a href="https://www.meteoblue.com/pt/tempo/semana/index" target="_blank" class="credits">meteoblue</a>
   </div>
   <div id="map-earth" class="map-container">
-    <iframe src="https://earth.nullschool.net/#current/wind/surface/level/overlay=precip_3hr/orthographic=-50.11,-28.74,3050"></iframe>
+    <iframe data-src="https://earth.nullschool.net/#current/wind/surface/level/overlay=precip_3hr/orthographic=-50.11,-28.74,3050"></iframe>
   </div>
   <div id="map-windy" class="map-container">
     <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=6&overlay=radar&product=radar&level=surface&lat=-27.606&lon=-49.922&pressure=true&message=true"></iframe>
