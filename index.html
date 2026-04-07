@@ -9,11 +9,70 @@
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
+
+    /* ── Coordenadas padrão (Florianópolis) usadas como fallback ── */
+    const DEFAULT_LAT = -27.606;
+    const DEFAULT_LON = -49.922;
+
+    /* Constrói as URLs dinâmicas com as coordenadas fornecidas */
+    function buildGeoUrls(lat, lon) {
+      const latF  = parseFloat(lat.toFixed(3));
+      const lonF  = parseFloat(lon.toFixed(3));
+      const latFs = latF.toFixed(3);
+      const lonFs = lonF.toFixed(3);
+
+      return {
+        windy:    `https://www.windy.com/multimodel/${latFs}/${lonFs}?satellite,${latFs},${lonFs},i:pressure`,
+        ventusky: `https://embed.ventusky.com/?p=${latFs};${lonFs};5&l=radar&m=worad_hres&w=fast`,
+        earth:    `https://earth.nullschool.net/#current/wind/surface/level/overlay=precip_3hr/orthographic=${lonFs},${latFs},2456`
+      };
+    }
+
+    /* Injeta as URLs nos iframes (ou em data-src, para os lazy) */
+    function applyGeoUrls(lat, lon) {
+      const urls = buildGeoUrls(lat, lon);
+
+      /* Windy – iframe visível de imediato */
+      const windyIframe = document.querySelector('#windy iframe');
+      if (windyIframe) windyIframe.src = urls.windy;
+
+      /* Ventusky – iframe visível de imediato */
+      const ventuskyIframe = document.querySelector('#ventusky iframe');
+      if (ventuskyIframe) ventuskyIframe.src = urls.ventusky;
+
+      /* Earth – carregamento lazy: atualiza data-src se ainda não foi
+         promovido para src; caso contrário, atualiza src diretamente */
+      const earthIframe = document.querySelector('#earth iframe');
+      if (earthIframe) {
+        if (earthIframe.hasAttribute('data-src')) {
+          earthIframe.setAttribute('data-src', urls.earth);
+        } else {
+          earthIframe.src = urls.earth;
+        }
+      }
+    }
+
+    /* Solicita geolocalização ao carregar a página */
+    function initGeolocation() {
+      if (!('geolocation' in navigator)) {
+        applyGeoUrls(DEFAULT_LAT, DEFAULT_LON);
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (pos) => applyGeoUrls(pos.coords.latitude, pos.coords.longitude),
+        ()    => applyGeoUrls(DEFAULT_LAT, DEFAULT_LON),   /* fallback se negado */
+        { timeout: 8000, maximumAge: 300000 }
+      );
+    }
+
     function switchMap(mapId) {
       document.querySelectorAll('.map-container').forEach(el => el.style.display = 'none');
       document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
       document.getElementById(mapId).style.display = 'block';
       event.currentTarget.classList.add('active');
+
+      /* Lazy-load: promove data-src → src ao abrir a aba */
       const iframe = document.querySelector('#' + mapId + ' iframe[data-src]');
       if (iframe) {
         iframe.src = iframe.getAttribute('data-src');
@@ -75,39 +134,37 @@
     }
   </style>
 </head>
-<body>
+<body onload="initGeolocation()">
   <div id="dsat" class="map-container" style="display: block;">
     <iframe src="https://www.cptec.inpe.br/dsat/?product=airmass&product_opacity=1&zoom=5&x=3899.4427&y=4095.7457&options=false"></iframe>
   </div>
+
+  <!-- src inicial com fallback; substituído por initGeolocation() -->
   <div id="windy" class="map-container">
-    <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=6&overlay=radar&product=radar&level=surface&lat=-27.606&lon=-49.922&pressure=true&message=true"></iframe>
+    <iframe src="https://www.windy.com/multimodel/-27.606/-49.922?satellite,-27.606,-49.922,i:pressure"></iframe>
   </div>
+
+  <!-- data-src mantido para lazy-load; URL atualizada por initGeolocation() -->
   <div id="earth" class="map-container">
-    <iframe data-src="https://earth.nullschool.net/#current/wind/surface/level/overlay=precip_3hr/orthographic=-51.01,-28.00,2456"></iframe>
+    <iframe data-src="https://earth.nullschool.net/#current/wind/surface/level/overlay=precip_3hr/orthographic=-49.922,-27.606,2456"></iframe>
   </div>
+
   <div id="meteoblue" class="map-container">
     <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/?windAnimation=0&gust=0&satellite=0&cloudsAndPrecipitation=1&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=detect&tempunit=C&lengthunit=metric&windunit=bft&zoom=5&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=f8b96d8d51947f3d&sig=8b9098048acd8f51fd0fb03ec7430d4008ce0555ccd923a801f32c5594262e91" scrolling="NO"></iframe>
     <a href="https://www.meteoblue.com/pt/tempo/semana/index" target="_blank" class="credits">meteoblue</a>
   </div>
+
+  <!-- src inicial com fallback; substituído por initGeolocation() -->
   <div id="ventusky" class="map-container">
-    <iframe src="https://embed.ventusky.com/?p=-27.6;-51.3;5&l=radar&m=worad_hres&w=fast" loading="lazy"></iframe>
+    <iframe src="https://embed.ventusky.com/?p=-27.606;-49.922;5&l=radar&m=worad_hres&w=fast" loading="lazy"></iframe>
   </div>
+
   <nav>
-    <button class="tab-button active" onclick="switchMap('dsat')">
-      🛰️
-    </button>
-    <button class="tab-button" onclick="switchMap('windy')">
-      📡
-    </button>
-    <button class="tab-button" onclick="switchMap('earth')">
-      🕒
-    </button>
-    <button class="tab-button" onclick="switchMap('meteoblue')">
-      🗓️
-    </button>
-    <button class="tab-button" onclick="switchMap('ventusky')">
-      🛸
-    </button>
+    <button class="tab-button active" onclick="switchMap('dsat')">🛰️</button>
+    <button class="tab-button" onclick="switchMap('windy')">📡</button>
+    <button class="tab-button" onclick="switchMap('earth')">🕒</button>
+    <button class="tab-button" onclick="switchMap('meteoblue')">🗓️</button>
+    <button class="tab-button" onclick="switchMap('ventusky')">🛸</button>
   </nav>
 </body>
 </html>
