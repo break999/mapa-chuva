@@ -74,6 +74,9 @@
   <div id="dsat" class="map-container" style="display: block;">
     <iframe src="https://www.cptec.inpe.br/dsat/?product=ch08_cpt_WVCOLOR35&product_opacity=1&zoom=4&x=3899.4427&y=4095.7457&overlay=glm_density_group_marker&overlay_opacity=1&options=false"></iframe>
   </div>
+  <div id="ventusky" class="map-container">
+    <iframe src="https://embed.ventusky.com/?p=-27.6;-51.3;4&l=radar&m=worad_hres&w=fast" loading="lazy"></iframe>
+  </div>
   <div id="windy" class="map-container">
     <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=6&overlay=radar&product=radar&level=surface&lat=-27.606&lon=-49.922&pressure=true&message=true"></iframe>
   </div>
@@ -81,21 +84,18 @@
     <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/?windAnimation=0&gust=0&satellite=0&cloudsAndPrecipitation=1&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=detect&tempunit=C&lengthunit=metric&windunit=bft&zoom=5&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=f8b96d8d51947f3d&sig=8b9098048acd8f51fd0fb03ec7430d4008ce0555ccd923a801f32c5594262e91" scrolling="NO"></iframe>
     <a href="https://www.meteoblue.com/pt/tempo/semana/index" target="_blank" class="credits">meteoblue</a>
   </div>
-  <div id="ventusky" class="map-container">
-    <iframe src="https://embed.ventusky.com/?p=-27.6;-51.3;4&l=radar&m=worad_hres&w=fast" loading="lazy"></iframe>
-  </div>
   <nav>
     <button class="tab-button active" onclick="switchMap('dsat')">
       🛰️
+    </button>
+    <button class="tab-button" onclick="switchMap('ventusky')">
+      🛸
     </button>
     <button class="tab-button" onclick="switchMap('windy')">
       📡
     </button>
     <button class="tab-button" onclick="switchMap('meteoblue')">
       🗓️
-    </button>
-    <button class="tab-button" onclick="switchMap('ventusky')">
-      🛸
     </button>
   </nav>
 </body>
