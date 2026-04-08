@@ -80,15 +80,11 @@
   <div id="windy" class="map-container">
     <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=5&overlay=radar&product=radar&level=surface&lat=-27.6&lon=-51.6&message=true"></iframe>
   </div>
-  <div id="meteoblue" class="map-container">
-    <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/-27.6N-51.6E755_America%2FSao_Paulo?windAnimation=0&gust=0&satellite=0&cloudsAndPrecipitation=1&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=fixed&tempunit=C&lengthunit=metric&windunit=bft&zoom=4&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=f8b96d8d51947f3d&sig=8b9098048acd8f51fd0fb03ec7430d4008ce0555ccd923a801f32c5594262e91" scrolling="NO"></iframe>
-    <a href="https://www.meteoblue.com/pt/tempo/semana/index" target="_blank" class="credits">meteoblue</a>
-  </div>
   <div id="windy2" class="map-container">
     <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=5&overlay=satellite&product=satellite&level=surface&lat=-27.6&lon=-51.6&message=true"></iframe>
   </div>
-  <div id="meteoblue2" class="map-container">
-    <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/-27.6N-51.6E755_America%2FSao_Paulo?windAnimation=0&gust=0&satellite=1&cloudsAndPrecipitation=0&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=fixed&tempunit=C&lengthunit=metric&windunit=bft&zoom=4&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=631ddcf380d0943b&sig=ecf9ae2fa754c9c283f8ba39cc8d224311d3f5b82a21ffeebb4d0ba223b10efe" scrolling="NO"></iframe>
+  <div id="meteoblue" class="map-container">
+    <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/-27.6N-51.6E755_America%2FSao_Paulo?windAnimation=0&gust=0&satellite=0&cloudsAndPrecipitation=1&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=fixed&tempunit=C&lengthunit=metric&windunit=bft&zoom=4&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=f8b96d8d51947f3d&sig=8b9098048acd8f51fd0fb03ec7430d4008ce0555ccd923a801f32c5594262e91" scrolling="NO"></iframe>
     <a href="https://www.meteoblue.com/pt/tempo/semana/index" target="_blank" class="credits">meteoblue</a>
   </div>
   <nav>
@@ -96,19 +92,16 @@
       🛰️
     </button>
     <button class="tab-button" onclick="switchMap('ventusky')">
-      🌪️
+      🤖
     </button>
     <button class="tab-button" onclick="switchMap('windy')">
       📡
     </button>
+    <button class="tab-button" onclick="switchMap('windy2')">
+      🔎
+    </button>
     <button class="tab-button" onclick="switchMap('meteoblue')">
       🗓️
-    </button>
-    <button class="tab-button" onclick="switchMap('windy2')">
-      🧐
-    </button>
-    <button class="tab-button" onclick="switchMap('meteoblue2')">
-      🤔
     </button>
   </nav>
 </body>
