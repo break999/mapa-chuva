@@ -74,14 +74,14 @@
   <div id="dsat" class="map-container" style="display: block;">
     <iframe src="https://www.cptec.inpe.br/dsat/?product=ch08_cpt_WVCOLOR35&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&overlay=glm_density_group_marker&overlay_opacity=1&options=false"></iframe>
   </div>
-  <div id="ventusky" class="map-container">
-    <iframe src="https://embed.ventusky.com/?p=-27.6;-51.6;4&l=radar&m=worad_hres&w=fast" loading="lazy"></iframe>
+  <div id="windy-sat" class="map-container">
+    <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=5&overlay=satellite&product=satellite&level=surface&lat=-27.6&lon=-51.6&message=true"></iframe>
   </div>
-  <div id="windy" class="map-container">
+  <div id="windy-rad" class="map-container">
     <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=5&overlay=radar&product=radar&level=surface&lat=-27.6&lon=-51.6&message=true"></iframe>
   </div>
-  <div id="windy2" class="map-container">
-    <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=5&overlay=satellite&product=satellite&level=surface&lat=-27.6&lon=-51.6&message=true"></iframe>
+  <div id="ventusky" class="map-container">
+    <iframe src="https://embed.ventusky.com/?p=-27.6;-51.6;4&l=radar&m=worad_hres&w=fast" loading="lazy"></iframe>
   </div>
   <div id="meteoblue" class="map-container">
     <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/-27.6N-51.6E755_America%2FSao_Paulo?windAnimation=0&gust=0&satellite=0&cloudsAndPrecipitation=1&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=fixed&tempunit=C&lengthunit=metric&windunit=bft&zoom=4&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=f8b96d8d51947f3d&sig=8b9098048acd8f51fd0fb03ec7430d4008ce0555ccd923a801f32c5594262e91" scrolling="NO"></iframe>
@@ -91,14 +91,14 @@
     <button class="tab-button active" onclick="switchMap('dsat')">
       🛰️
     </button>
-    <button class="tab-button" onclick="switchMap('ventusky')">
-      🤖
+    <button class="tab-button" onclick="switchMap('windy-sat')">
+      🛩️
     </button>
-    <button class="tab-button" onclick="switchMap('windy')">
+    <button class="tab-button" onclick="switchMap('windy-rad')">
       📡
     </button>
-    <button class="tab-button" onclick="switchMap('windy2')">
-      🛩️
+    <button class="tab-button" onclick="switchMap('ventusky')">
+      🤖
     </button>
     <button class="tab-button" onclick="switchMap('meteoblue')">
       🗓️
