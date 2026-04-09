@@ -10,11 +10,11 @@
       navigator.serviceWorker.register('sw.js');
     }
     function switchMap(mapId) {
-      document.querySelectorAll('.map-container').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
-      document.getElementById(mapId).style.display = 'block';
-      event.currentTarget.classList.add('active');
-    }
+  document.querySelectorAll('.map-container').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+  document.getElementById(mapId).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
   </script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,7 +27,15 @@
     .map-container {
       width: 100%;
       height: calc(100vh - 48px);
-      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .map-container.active {
+      visibility: visible;
+      pointer-events: auto;
     }
     iframe {
       width: 100%;
@@ -71,7 +79,7 @@
   </style>
 </head>
 <body>
-  <div id="dsat-ch08" class="map-container" style="display: block;">
+  <div id="dsat-ch08" class="map-container active">
     <iframe src="https://www.cptec.inpe.br/dsat/?product=ch08_cpt_WVCOLOR35&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&overlay=glm_density_group_marker&overlay_opacity=1&options=false"></iframe>
   </div>
   <div id="dsat-wv" class="map-container">
