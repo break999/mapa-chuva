@@ -29,7 +29,8 @@
       padding: 6px 12px;
       border-radius: 6px;
       font-size: 13px;
-      white-space: pre;
+      white-space: pre-wrap;
+      max-width: 90vw;
       pointer-events: none;
       z-index: 999;
     }
@@ -141,7 +142,6 @@
   let activeMap = document.getElementById('dsat-am');
   let activeBtn = document.querySelector('.tab-button.active');
 
-  // Troca de aba
   nav.addEventListener('click', e => {
     const btn = e.target.closest('.tab-button');
     if (!btn || btn === activeBtn) return;
@@ -156,7 +156,6 @@
     activeBtn.classList.add('active');
   });
 
-  // Tooltip com long-press (300ms)
   let pressTimer = null;
 
   nav.addEventListener('touchstart', e => {
@@ -164,8 +163,6 @@
     if (!btn) return;
 
     pressTimer = setTimeout(() => {
-      // Só chama preventDefault depois do delay,
-      // então toques rápidos ainda disparam o click normalmente
       tooltip.textContent = btn.dataset.tooltip;
       tooltip.style.display = 'block';
       pressTimer = null;
