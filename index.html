@@ -18,6 +18,21 @@
       background: #000;
       overflow: hidden;
     }
+    #tooltip {
+      display: none;
+      position: fixed;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      white-space: pre;
+      pointer-events: none;
+      z-index: 999;
+    }
     #map-wrapper {
       position: relative;
       width: 100%;
@@ -76,14 +91,20 @@
 </head>
 <body>
 <div id="map-wrapper">
-  <div id="dsat-ch08" class="map-container active">
-    <iframe src="https://www.cptec.inpe.br/dsat/?product=ch08_cpt_WVCOLOR35&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&overlay=glm_density_group_marker&overlay_opacity=1&animate=true&t=333.33&options=false"></iframe>
+  <div id="dsat-am" class="map-container active">
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=airmass&product_opacity=1&zoom=3&x=3805.5131&y=4126.9628&animate=true&t=100.00&options=false"></iframe>
   </div>
   <div id="dsat-wv" class="map-container">
-    <iframe src="https://www.cptec.inpe.br/dsat/?product=simple_wv&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&options=false"></iframe>
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=simple_wv&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=true&t=100.00&options=false"></iframe>
   </div>
-  <div id="dsat-jma" class="map-container">
-    <iframe src="https://www.cptec.inpe.br/dsat/?product=day_cloud_phase_jma&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&options=false"></iframe>
+  <div id="dsat-cp" class="map-container">
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=cloud_phase_eumetsat&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=true&t=100.00&options=false"></iframe>
+  </div>
+  <div id="dsat-dv" class="map-container">
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=convective_storm&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=true&t=100.00&options=false"></iframe>
+  </div>
+  <div id="dsat-nm" class="map-container">
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=night_microphysics&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=true&t=100.00&options=false"></iframe>
   </div>
   <div id="windy-sat" class="map-container">
     <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=5&overlay=satellite&product=satellite&level=surface&lat=-27.6&lon=-51.6&message=true"></iframe>
@@ -100,13 +121,15 @@
   </div>
 </div>
 <nav id="tab-nav">
-  <button class="tab-button active" data-map="dsat-ch08">🛰️</button>
-  <button class="tab-button" data-map="dsat-wv">🚀</button>
-  <button class="tab-button" data-map="dsat-jma">🛸</button>
-  <button class="tab-button" data-map="windy-sat">🛩️</button>
-  <button class="tab-button" data-map="windy-rad">📡</button>
-  <button class="tab-button" data-map="ventusky">🤖</button>
-  <button class="tab-button" data-map="meteoblue">🗓️</button>
+  <button class="tab-button active" data-map="dsat-am" data-tooltip="Vermelho: gradiente vertical de vapor d'água (baixo vapor d'água na camada superior com relação à camada inferior; intrusão de ar seco da estratosfera e ruptura da tropopausa)&#10Verde: baixo ozônio (alta tropopausa; ar quente)&#10Azul: vapor d'água na camada superior">༄</button>
+  <button class="tab-button" data-map="dsat-wv" data-tooltip="Vermelho: topo de nuvem frio&#10Verde: vapor d'água na camada superior&#10Azul: vapor d'água na camada inferior">💨</button>
+  <button class="tab-button" data-map="dsat-cp" data-tooltip="Vermelho: gelo -> água&#10Verde: menor tamanho de partícula&#10Azul: espessura óptica da nuvem">☁️</button>
+  <button class="tab-button" data-map="dsat-dv" data-tooltip="Vermelho: gradiente vertical de vapor d'água (baixo vapor d'água na camada superior com relação à camada inferior)&#10Verde: menor tamanho de partícula&#10Azul: gelo -> água">⤴️</button>
+  <button class="tab-button" data-map="dsat-nm" data-tooltip="Vermelho: espessura óptica da nuvem&#10Verde: gelo -> água&#10Azul: topo de nuvem quente">🌙</button>
+  <button class="tab-button" data-map="windy-sat" data-tooltip="Satélite Processado">🛩️</button>
+  <button class="tab-button" data-map="windy-rad" data-tooltip="Radar Meteorológico">📡</button>
+  <button class="tab-button" data-map="ventusky" data-tooltip="Radar Processado">🤖</button>
+  <button class="tab-button" data-map="meteoblue" data-tooltip="Previsão do Tempo">🗓️</button>
 </nav>
 <script>
   let activeMap = document.getElementById('dsat-ch08');
@@ -124,7 +147,25 @@
 
     activeMap.classList.add('active');
     activeBtn.classList.add('active');
-  });
+    });
+  
+  const tooltip = document.getElementById('tooltip');
+
+  document.getElementById('tab-nav').addEventListener('touchstart', e => {
+    const btn = e.target.closest('.tab-button');
+    if (!btn) return;
+    tooltip.textContent = btn.dataset.tooltip;
+    tooltip.style.display = 'block';
+    }, { passive: true });
+
+  document.getElementById('tab-nav').addEventListener('touchend', () => {
+    tooltip.style.display = 'none';
+    });
+
+  document.getElementById('tab-nav').addEventListener('touchcancel', () => {
+    tooltip.style.display = 'none';
+    });
 </script>
+  <div id="tooltip"></div>
 </body>
 </html>
