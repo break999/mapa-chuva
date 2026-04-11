@@ -65,6 +65,8 @@
       font-size: 12px;
       cursor: pointer;
       transition: color .3s, background .3s;
+      user-select: none;
+      -webkit-user-select: none;
     }
     .tab-button.active {
       color: #00aaff;
@@ -90,6 +92,7 @@
   </style>
 </head>
 <body>
+<div id="tooltip"></div>
 <div id="map-wrapper">
   <div id="dsat-am" class="map-container active">
     <iframe src="https://www.cptec.inpe.br/dsat/?product=airmass&product_opacity=1&zoom=3&x=3805.5131&y=4126.9628&animate=true&t=100.00&options=false"></iframe>
@@ -132,10 +135,13 @@
   <button class="tab-button" data-map="meteoblue" data-tooltip="Previsão do Tempo">🗓️</button>
 </nav>
 <script>
-  let activeMap = document.getElementById('dsat-ch08');
+  const tooltip = document.getElementById('tooltip');
+  const nav = document.getElementById('tab-nav');
+
+  let activeMap = document.getElementById('dsat-am');
   let activeBtn = document.querySelector('.tab-button.active');
 
-  document.getElementById('tab-nav').addEventListener('click', e => {
+  nav.addEventListener('click', e => {
     const btn = e.target.closest('.tab-button');
     if (!btn || btn === activeBtn) return;
 
@@ -147,25 +153,19 @@
 
     activeMap.classList.add('active');
     activeBtn.classList.add('active');
-    });
-  
-  const tooltip = document.getElementById('tooltip');
+  });
 
-  document.getElementById('tab-nav').addEventListener('touchstart', e => {
+  nav.addEventListener('touchstart', e => {
     const btn = e.target.closest('.tab-button');
     if (!btn) return;
+    e.preventDefault();
     tooltip.textContent = btn.dataset.tooltip;
     tooltip.style.display = 'block';
-    }, { passive: true });
+  }, { passive: false });
 
-  document.getElementById('tab-nav').addEventListener('touchend', () => {
-    tooltip.style.display = 'none';
-    });
-
-  document.getElementById('tab-nav').addEventListener('touchcancel', () => {
-    tooltip.style.display = 'none';
-    });
+  const hideTooltip = () => { tooltip.style.display = 'none'; };
+  nav.addEventListener('touchend', hideTooltip);
+  nav.addEventListener('touchcancel', hideTooltip);
 </script>
-  <div id="tooltip"></div>
 </body>
 </html>
