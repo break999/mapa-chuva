@@ -94,7 +94,10 @@
 <body>
 <div id="tooltip"></div>
 <div id="map-wrapper">
-  <div id="windy-sat" class="map-container active">
+  <div id="dsat" class="map-container active">
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=ch09_cpt_WVCOLOR35&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&overlay=glm_density_group_marker&overlay_opacity=1.0&animate=true&t=153.85&legend=false"></iframe>
+  </div>
+  <div id="windy-sat" class="map-container">
     <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=5&overlay=satellite&product=satellite&level=surface&lat=-27.6&lon=-51.6&message=true"></iframe>
   </div>
   <div id="windy-rad" class="map-container">
@@ -109,16 +112,17 @@
   </div>
 </div>
 <nav id="tab-nav">
-   <button class="tab-button active" data-map="windy-sat" data-tooltip="Satélite Processado">🛩️</button>
+  <button class="tab-button active" data-map="dsat" data-tooltip="Satélite">🛰️</button>
+  <button class="tab-button" data-map="windy-sat" data-tooltip="Satélite Artificial">🛩️</button>
   <button class="tab-button" data-map="windy-rad" data-tooltip="Radar Meteorológico">📡</button>
-  <button class="tab-button" data-map="ventusky" data-tooltip="Radar Processado">🤖</button>
+  <button class="tab-button" data-map="ventusky" data-tooltip="Radar Artificial">🤖</button>
   <button class="tab-button" data-map="meteoblue" data-tooltip="Previsão do Tempo">🗓️</button>
 </nav>
 <script>
   const tooltip = document.getElementById('tooltip');
   const nav = document.getElementById('tab-nav');
 
-  let activeMap = document.getElementById('windy-sat');
+  let activeMap = document.getElementById('dsat');
   let activeBtn = document.querySelector('.tab-button.active');
 
   nav.addEventListener('click', e => {
