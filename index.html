@@ -103,8 +103,26 @@
   <div id="ventusky" class="map-container">
     <iframe src="https://embed.ventusky.com/?p=-27.6;-51.6;4&l=radar&m=worad_hres&w=fast"></iframe>
   </div>
-  <div id="multimodel" class="map-container">
-    <iframe src="https://www.meteoblue.com/pt/tempo/previsao/multimodel/?forecast_days=3&params%5B%5D=&params%5B%5D=NEMSSA&params%5B%5D=&params%5B%5D=ICON&params%5B%5D=GEM15&params%5B%5D=WRFAMS&params%5B%5D=IFSHRES"></iframe>
+  <div id="multimodel" class="map-container" style="overflow-y: auto; background: #231f20; display: flex; flex-direction: column; align-items: center;">
+    <img id="multimodel-img"
+      src="https://my.meteoblue.com/images/meteogram_multimodel?temperature_units=C&windspeed_units=kmh&precipitation_units=mm&darkmode=true&iso2=br&lat=-27.5967&lon=-48.5492&asl=26&tz=America%2FSao_Paulo&forecast_days=3&apikey=n4UGDLso3gE6m2YI&lang=pt&location_name=Florian%C3%B3polis&format=png&dpi=100&domains=NEMSSA&domains=ICON&domains=GEM15&domains=WRFAMS&domains=IFSHRES"
+      alt="Meteograma Multimodelo - Florianópolis"
+      style="width: 100%; max-width: 850px; height: auto; display: block;">
+    <div id="multimodel-error" style="display:none; color:#aaa; font-size:13px; padding:20px; text-align:center;">
+      Não foi possível carregar a imagem.<br>
+      <a href="https://www.meteoblue.com/pt/tempo/previsao/multimodel/florian%c3%b3polis_brasil_3463237"
+         target="_blank" style="color:#00aaff;">Abrir no meteoblue ↗</a>
+    </div>
+    <script>
+      (function() {
+        var img = document.getElementById('multimodel-img');
+        var err = document.getElementById('multimodel-error');
+        img.onerror = function() {
+          img.style.display = 'none';
+          err.style.display = 'block';
+        };
+      })();
+    </script>
   </div>
   <div id="meteoblue" class="map-container">
     <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/-27.6N-51.6E755_America%2FSao_Paulo?windAnimation=0&gust=0&satellite=0&cloudsAndPrecipitation=1&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=fixed&tempunit=C&lengthunit=metric&windunit=bft&zoom=4&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=f8b96d8d51947f3d&sig=8b9098048acd8f51fd0fb03ec7430d4008ce0555ccd923a801f32c5594262e91" scrolling="no"></iframe>
