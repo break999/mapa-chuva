@@ -97,14 +97,11 @@
   <div id="dsat" class="map-container active">
     <iframe src="https://www.cptec.inpe.br/dsat/?product=true_color_ch13_dsa&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=false&t=153.85&options=false"></iframe>
   </div>
-  <div id="dsat-ir" class="map-container">
-    <iframe src="https://www.cptec.inpe.br/dsat/?product=ch13_cpt_IR4AVHRR6&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=false&t=153.85&options=false"></iframe>
-  </div>
   <div id="dsat-wv" class="map-container">
-    <iframe src="https://www.cptec.inpe.br/dsat/?product=ch08_cpt_WVCOLOR35&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=false&t=153.85&options=false"></iframe>
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=simple_wv&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=false&t=153.85&options=false"></iframe>
   </div>
-  <div id="windy-sat" class="map-container">
-    <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=5&overlay=satellite&product=satellite&level=surface&lat=-27.6&lon=-51.6&message=true"></iframe>
+  <div id="dsat-ch09" class="map-container">
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=ch09_cpt_WVCOLOR35&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=false&t=153.85&options=false"></iframe>
   </div>
   <div id="windy-rad" class="map-container">
     <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=5&overlay=radar&product=radar&level=surface&lat=-27.6&lon=-51.6&message=true"></iframe>
@@ -121,13 +118,12 @@
   </div>
 </div>
 <nav id="tab-nav">
-  <button class="tab-button active" data-map="dsat" data-tooltip="satélite - visível + infravermelho">🛰️</button>
-  <button class="tab-button" data-map="dsat-ir" data-tooltip="satélite - infravermelho">🔴</button>
-  <button class="tab-button" data-map="dsat-wv" data-tooltip="satélite - umidade na camada superior">💨</button>
-  <button class="tab-button" data-map="windy-sat" data-tooltip="satélite - nuvens grossas">🛩️</button>
+  <button class="tab-button active" data-map="dsat" data-tooltip="satélite - espectro visível + infravermelho">🛰️</button>
+  <button class="tab-button" data-map="dsat-wv" data-tooltip="satélite - umidade em diferentes camadas">💦</button>
+  <button class="tab-button" data-map="dsat-ch09" data-tooltip="satélite - umidade na camada média">💧</button>
   <button class="tab-button" data-map="windy-rad" data-tooltip="radar meteorológico - chuva 'ouvida' por equipamentos terrestres em tempo real">📡</button>
-  <button class="tab-button" data-map="ventusky-850" data-tooltip="geopotential 850hpa - pressão e vento na camada inferior">🡻</button>
-  <button class="tab-button" data-map="ventusky-500" data-tooltip="geopotential 500hpa - pressão e vento na camada superior">🢁</button>
+  <button class="tab-button" data-map="ventusky-850" data-tooltip="geopotential 850hpa - pressão e vento na camada inferior">👇</button>
+  <button class="tab-button" data-map="ventusky-500" data-tooltip="geopotential 500hpa - pressão e vento na camada superior">👆</button>
   <button class="tab-button" data-map="meteoblue" data-tooltip="previsão do tempo - nuvem e chuva">🗓️</button>
 </nav>
 <script>
