@@ -110,8 +110,40 @@
 </div>
 <nav id="tab-nav">
   <button class="tab-button active" data-map="dsat" data-tooltip="satélite - umidade na camada alta (500 hPa)">🛰️</button>
-  <button class="tab-button" data-map="dsat-cp" data-tooltip="satélite - fase da nuvem e microfísica durante o dia&#10&#10- Vermelho: gelo -> água&#10- Verde: menor tamanho de partícula&#10- Azul: espessura óptica da nuvem">🌞</button>
-  <button class="tab-button" data-map="dsat-nm" data-tooltip="satélite - fase da nuvem e microfísica durante a noite&#10&#10- Vermelho: espessura óptica da nuvem&#10- Verde: gelo -> água&#10- Azul: topo de nuvem quente">🌛</button>
+  <button class="tab-button" data-map="dsat-cp" data-tooltip="
+satélite - fase da nuvem e microfísica durante o dia
+&#10
+&#10♐ = nuvem mais espessa (☁️) do que fina (⛅)
+&#10♈ = mais partículas de água líquida (💧) do que de gelo (❄️) na nuvem
+&#10♍ = mais partículas pequenas (🔹) do que grandes (🔷) na nuvem
+&#10
+&#10⚫⛅⛅❄️❄️🔷🔷
+&#10⚪☁️☁️💧💧🔹🔹
+&#10
+&#10♈♉♊♌♍♎♏⛎♐♑♒♓
+&#10⛅⛅⛅⛅⛅☁️☁️☁️☁️☁️☁️☁️
+&#10⛅⛅⛅⛅⛅⛅☁️☁️☁️☁️☁️⛅
+&#10💧💧💧❄️❄️❄️❄️❄️❄️❄️💧💧
+&#10💧💧💧💧❄️❄️❄️❄️❄️💧💧💧
+&#10🔷🔹🔹🔹🔹🔹🔹🔹🔷🔷🔷🔷
+&#10🔷🔷🔹🔹🔹🔹🔹🔷🔷🔷🔷🔷">🌞</button>
+  <button class="tab-button" data-map="dsat-nm" data-tooltip="
+satélite - fase da nuvem e microfísica durante a noite
+&#10
+&#10♈ = nuvem mais espessa (☁️) do que fina (⛅)
+&#10♍ = mais partículas de água líquida (💧) do que de gelo (❄️) na nuvem
+&#10♐ = topo de nuvem mais quente (🥵) do que frio (🥶) (em nuvens finas, pode atravessar e medir o solo; portanto, uma nuvem de gelo fina pode ser medida como quente)
+&#10
+&#10⚫⛅⛅❄️❄️🥶🥶
+&#10⚪☁️☁️💧💧🥵🥵
+&#10
+&#10♈♉♊♌♍♎♏⛎♐♑♒♓
+&#10☁️☁️☁️☁️⛅⛅⛅⛅⛅☁️☁️☁️
+&#10☁️☁️☁️⛅⛅⛅⛅⛅⛅⛅☁️☁️
+&#10❄️❄️💧💧💧💧💧❄️❄️❄️❄️❄️
+&#10❄️💧💧💧💧💧💧💧❄️❄️❄️❄️
+&#10🥶🥶🥶🥶🥶🥶🥵🥵🥵🥵🥵🥶
+&#10🥶🥶🥶🥶🥶🥵🥵🥵🥵🥵🥵🥵">🌛</button>
   <button class="tab-button" data-map="meteoblue" data-tooltip="previsão do tempo - nuvem e chuva">🗓️</button>
 </nav>
 <script>
