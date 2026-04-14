@@ -103,15 +103,6 @@
   <div id="dsat-nm" class="map-container">
     <iframe src="https://www.cptec.inpe.br/dsat/?product=night_microphysics&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=false&t=250.00&options=false"></iframe>
   </div>
-  <div id="windy-rad" class="map-container">
-    <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=6&overlay=radar&product=radar&level=surface&lat=-27.6&lon=-51.6&message=true"></iframe>
-  </div>
-  <div id="ventusky-850" class="map-container">
-    <iframe src="https://embed.ventusky.com/?p=-27.6;-51.6;4&l=geopotential-850hpa&w=0AAjA9AzA"></iframe>
-  </div>
-  <div id="ventusky-500" class="map-container">
-    <iframe src="https://embed.ventusky.com/?p=-27.6;-51.6;4&l=geopotential-500hpa&w=0AAjA9Aza"></iframe>
-  </div>
   <div id="meteoblue" class="map-container">
     <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/-27.6N-51.6E755_America%2FSao_Paulo?windAnimation=0&gust=0&satellite=0&cloudsAndPrecipitation=1&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=fixed&tempunit=C&lengthunit=metric&windunit=bft&zoom=4&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=f8b96d8d51947f3d&sig=8b9098048acd8f51fd0fb03ec7430d4008ce0555ccd923a801f32c5594262e91" scrolling="no"></iframe>
     <a href="https://www.meteoblue.com/pt/tempo/semana/index" target="_blank" class="credits">meteoblue</a>
@@ -121,9 +112,6 @@
   <button class="tab-button active" data-map="dsat" data-tooltip="satélite - umidade na camada alta (500 hPa)">🛰️</button>
   <button class="tab-button" data-map="dsat-cp" data-tooltip="satélite - fase da nuvem e microfísica durante o dia&#10&#10- Vermelho: gelo -> água&#10- Verde: menor tamanho de partícula&#10- Azul: espessura óptica da nuvem">🌞</button>
   <button class="tab-button" data-map="dsat-nm" data-tooltip="satélite - fase da nuvem e microfísica durante a noite&#10&#10- Vermelho: espessura óptica da nuvem&#10- Verde: gelo -> água&#10- Azul: topo de nuvem quente">🌛</button>
-  <button class="tab-button" data-map="windy-rad" data-tooltip="radar meteorológico - chuva 'ouvida' por equipamentos terrestres em tempo real">📡</button>
-  <button class="tab-button" data-map="ventusky-850" data-tooltip="geopotential 850hpa - pressão e vento na camada baixa (o caminho da umidade/'combustível' - norte úmido / sul seco)">👇</button>
-  <button class="tab-button" data-map="ventusky-500" data-tooltip="geopotential 500hpa - pressão e vento na camada alta (o caminho da nuvem)">👆</button>
   <button class="tab-button" data-map="meteoblue" data-tooltip="previsão do tempo - nuvem e chuva">🗓️</button>
 </nav>
 <script>
