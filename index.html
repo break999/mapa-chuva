@@ -97,11 +97,17 @@
   <div id="dsat" class="map-container active">
     <iframe src="https://www.cptec.inpe.br/dsat/?product=ch13_cpt_IR4AVHRR6&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=true&t=250.00&options=false"></iframe>
   </div>
-  <div id="dsat-cp" class="map-container">
-    <iframe src="https://www.cptec.inpe.br/dsat/?product=cloud_phase_eumetsat&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=false&t=250.00&options=false"></iframe>
+  <div id="dsat-13" class="map-container">
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=product=ch13&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=false&t=250.00&options=false"></iframe>
   </div>
-  <div id="dsat-nm" class="map-container">
-    <iframe src="https://www.cptec.inpe.br/dsat/?product=night_microphysics&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=false&t=250.00&options=false"></iframe>
+  <div id="dsat-10" class="map-container">
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=product=ch10&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=false&t=250.00&options=false"></iframe>
+  </div>
+  <div id="dsat-08" class="map-container">
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=product=ch08&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=false&t=250.00&options=false"></iframe>
+  </div>
+  <div id="dsat-wv" class="map-container">
+    <iframe src="https://www.cptec.inpe.br/dsat/?product=product=simple_wv&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&animate=false&t=250.00&options=false"></iframe>
   </div>
   <div id="meteoblue" class="map-container">
     <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/-27.6N-51.6E755_America%2FSao_Paulo?windAnimation=0&gust=0&satellite=0&cloudsAndPrecipitation=1&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=fixed&tempunit=C&lengthunit=metric&windunit=bft&zoom=4&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=f8b96d8d51947f3d&sig=8b9098048acd8f51fd0fb03ec7430d4008ce0555ccd923a801f32c5594262e91" scrolling="no"></iframe>
@@ -109,39 +115,19 @@
   </div>
 </div>
 <nav id="tab-nav">
-  <button class="tab-button active" data-map="dsat" data-tooltip="satélite - infravermelho">🛰️</button>
-  <button class="tab-button" data-map="dsat-cp" data-tooltip="
-satélite - fase da nuvem e microfísica durante o dia
-&#10
-&#10♐ = nuvem mais espessa (☁️) do que fina (⛅)
-&#10♈ = mais partículas de água líquida (💧) do que de gelo (❄️) na nuvem
-&#10♎ = mais partículas pequenas (🔹) do que grandes (🔷) na nuvem
-&#10⚫ = ⛅⛅❄️❄️🔷🔷
-&#10⚪ = ☁️☁️💧💧🔹🔹
-&#10
-&#10♈♊♌♎♏⛎♐♒♓
-&#10⛅⛅⛅⛅☁️☁️☁️☁️☁️
-&#10⛅⛅⛅⛅⛅☁️☁️☁️⛅
-&#10💧💧❄️❄️❄️❄️❄️❄️💧
-&#10💧💧💧❄️❄️❄️❄️💧💧
-&#10🔷🔹🔹🔹🔹🔹🔷🔷🔷
-&#10🔷🔷🔹🔹🔹🔷🔷🔷🔷">🌞</button>
-  <button class="tab-button" data-map="dsat-nm" data-tooltip="
-satélite - fase da nuvem e microfísica durante a noite
-&#10
-&#10♈ = nuvem mais espessa (☁️) do que fina (⛅)
-&#10♎ = mais partículas de água líquida (💧) do que de gelo (❄️) na nuvem
-&#10♐ = topo de nuvem mais quente (🥵) do que frio (🥶) (em nuvens finas, pode atravessar e medir o solo; portanto, uma nuvem de gelo fina pode ser medida como quente)
-&#10⚫ = ⛅⛅❄️❄️🥶🥶
-&#10⚪ = ☁️☁️💧💧🥵🥵
-&#10
-&#10♈♊♌♎♏⛎♐♒♓
-&#10☁️☁️☁️⛅⛅⛅⛅☁️☁️
-&#10☁️☁️⛅⛅⛅⛅⛅⛅☁️
-&#10❄️❄️💧💧💧❄️❄️❄️❄️
-&#10❄️💧💧💧💧💧❄️❄️❄️
-&#10🥶🥶🥶🥶🥶🥵🥵🥵🥶
-&#10🥶🥶🥶🥶🥵🥵🥵🥵🥵">🌛</button>
+  <button class="tab-button active" data-map="dsat" data-tooltip="satélite">🛰️</button>
+  <button class="tab-button" data-map="dsat-13" data-tooltip="satélite ch13 - nuvens mais compridas verticalmente brilham mais">13</button>
+  <button class="tab-button" data-map="dsat-10" data-tooltip="satélite ch10 - maior umidade na camada baixa brilha mais">10</button>
+  <button class="tab-button" data-map="dsat-10" data-tooltip="satélite ch08 - maior umidade na camada alta brilha mais">08</button>
+  <button class="tab-button" data-map="dsat-wv" data-tooltip="satélite Simple Water Vapor (ch 13+10+08)
+    &#10🖤 seco em todas as camadas
+    &#10❤️ nuvem na camada baixa, atmosfera seca
+    &#10♓ nuvem na camada baixa, umidade na camada baixa, seco na camada alta
+    &#10🩷 nuvem na camada baixa, umidade em todas as camadas
+    &#10💙 umidade na camada baixa, seco na camada alta
+    &#10💚 umidade na camada alta, seco na camada baixa
+    &#10🩵 umidade em todas as camadas, sem nuvens
+    &#10🤍 iniciação de convecção ou nuvem comprida verticalmente">wv</button>
   <button class="tab-button" data-map="meteoblue" data-tooltip="previsão do tempo - nuvem e chuva">🗓️</button>
 </nav>
 <script>
