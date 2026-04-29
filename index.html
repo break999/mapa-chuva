@@ -97,7 +97,7 @@
   <div id="dsat" class="map-container active">
     <iframe src="https://www.cptec.inpe.br/dsat/?product=true_color_ch13_dsa&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&t=250.00&options=false"></iframe>
   </div>
-  <div id="dsat-wv" class="map-container">
+  <div id="dsat-dcnm" class="map-container">
     <iframe src="https://www.cptec.inpe.br/dsat/?product=convective_storm&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&overlay=night_microphysics&overlay_opacity=1&animate=true&t=250.00&options=false"></iframe>
   </div>
   <div id="dsat-am" class="map-container">
@@ -106,24 +106,16 @@
   <div id="windy-rad" class="map-container">
     <iframe src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=bft&zoom=5&overlay=radar&product=radar&level=surface&lat=-27.6&lon=-51.6&message=true"></iframe>
   </div>
-  <div id="ventusky-850" class="map-container">
-    <iframe src="https://embed.ventusky.com/?p=-27.6;-51.6;4&l=wind-850hpa&w=0AADA9A9a"></iframe>
-  </div>
-  <div id="ventusky-500" class="map-container">
-    <iframe src="https://embed.ventusky.com/?p=-27.6;-51.6;4&l=wind-500hpa&w=0AADA9A9a"></iframe>
-  </div>
   <div id="meteoblue" class="map-container">
     <iframe src="https://www.meteoblue.com/pt/tempo/mapas/widget/-27.6N-51.6E755_America%2FSao_Paulo?windAnimation=0&gust=0&satellite=0&cloudsAndPrecipitation=1&temperature=0&sunshine=0&extremeForecastIndex=0&geoloc=fixed&tempunit=C&lengthunit=metric&windunit=bft&zoom=4&autowidth=auto&user_key=a3e7dbaab04f15e8&embed_key=f8b96d8d51947f3d&sig=8b9098048acd8f51fd0fb03ec7430d4008ce0555ccd923a801f32c5594262e91" scrolling="no"></iframe>
     <a href="https://www.meteoblue.com/pt/tempo/semana/index" target="_blank" class="credits">meteoblue</a>
   </div>
 </div>
 <nav id="tab-nav">
-  <button class="tab-button active" data-map="dsat" data-tooltip="satélite e infravermelho">🛰️</button>
-  <button class="tab-button" data-map="dsat-wv" data-tooltip="satélite">💧</button>
-  <button class="tab-button" data-map="dsat-am" data-tooltip="satélite - Air Mass">💨</button>
-  <button class="tab-button" data-map="windy-rad" data-tooltip="Radar Meteorológico">📡</button>
-  <button class="tab-button" data-map="ventusky-850" data-tooltip="pressão e vento na camada baixa">👇</button>
-  <button class="tab-button" data-map="ventusky-500" data-tooltip="pressão e vento na camada alta">☝️</button>
+  <button class="tab-button active" data-map="dsat" data-tooltip="satélite - true color + infravermelho">🛰️</button>
+  <button class="tab-button" data-map="dsat-dcnm" data-tooltip="satélite - day convection + nighttime microphysics">💧</button>
+  <button class="tab-button" data-map="dsat-am" data-tooltip="satélite - air mass">💨</button>
+  <button class="tab-button" data-map="windy-rad" data-tooltip="radar meteorológico">📡</button>
   <button class="tab-button" data-map="meteoblue" data-tooltip="previsão do tempo - nuvem e chuva">🗓️</button>
 </nav>
 <script>
