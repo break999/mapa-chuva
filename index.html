@@ -95,9 +95,6 @@
 <div id="tooltip"></div>
 <div id="map-wrapper">
   <div id="dsat" class="map-container active">
-    <iframe src="https://www.cptec.inpe.br/dsat/?product=airmass&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&overlay=simple_wv&overlay_opacity=0.3&animate=true&t=250.00&options=false"></iframe>
-  </div>
-  <div id="dsat-dcnm" class="map-container">
     <iframe src="https://www.cptec.inpe.br/dsat/?product=night_microphysics&product_opacity=1&zoom=4&x=3805.5131&y=4126.9628&overlay=convective_storm&overlay_opacity=1&animate=true&t=250.00&options=false"></iframe>
   </div>
   <div id="windy-rad" class="map-container">
@@ -109,8 +106,7 @@
   </div>
 </div>
 <nav id="tab-nav">
-  <button class="tab-button active" data-map="dsat" data-tooltip="satélite - airmass + simple water vapor">🛰️1</button>
-  <button class="tab-button" data-map="dsat-dcnm" data-tooltip="satélite - day convection & nighttime microphysics">🛰️2</button>
+  <button class="tab-button active" data-map="dsat" data-tooltip="satélite">🛰️</button>
   <button class="tab-button" data-map="windy-rad" data-tooltip="radar meteorológico">📡</button>
   <button class="tab-button" data-map="meteoblue" data-tooltip="previsão do tempo - nuvem e chuva">🗓️</button>
 </nav>
